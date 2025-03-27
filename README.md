@@ -13,7 +13,7 @@
   - When a system should be independent of product creation, composition, and representation.
   - When configured with multiple product families.
   - To enforce usage constraints of related products.
-- **Implentation**
+- **Related Patterns**
   - Prototype
   - Singleton
   - Factory
