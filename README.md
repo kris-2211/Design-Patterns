@@ -13,7 +13,9 @@
   - When a system should be independent of product creation, composition, and representation.
   - When configured with multiple product families.
   - To enforce usage constraints of related products.
-- **Related Patterns**
+- **Example**
+  Abstract Factory: A user interface toolkit that supports multiple look-and-feel standards, such as Motif and Presentation Manager, uses an abstract WidgetFactory to create families of related widgets (like scroll bars, windows, and buttons) without specifying their concrete classes. For each look-and-feel (e.g., Motif), there is a concrete subclass of WidgetFactory (e.g., MotifWidgetFactory) that creates the corresponding concrete widgets (e.g., MotifScrollBar, MotifButton).
+- **Implentation**
   - Prototype
   - Singleton
   - Factory
@@ -33,6 +35,8 @@
 - **Applicability:**
   - When you want to use an existing class with a mismatched interface.
   - When creating a reusable class that can cooperate with unrelated or unforeseen classes.
+- **Example**
+  Adapter: A drawing editor that uses a Shape interface for graphical objects wants to reuse a TextView class for displaying and editing text, but TextView has an incompatible interface. A TextShape class can act as an adapter, either by inheriting from both Shape and TextView (class adapter) or by containing a TextView instance and implementing the Shape interface by delegating to the TextView object (object adapter).
 - **Related Patterns**
   - Bridge
   - Decorator
@@ -52,6 +56,8 @@
   - When you want to avoid a permanent binding between abstraction and implementation.
   - When both should be extensible.
   - When implementation changes shouldn't impact clients.
+- **Example**
+  Bridge: Implementing a portable Window abstraction in a user interface toolkit that needs to work on different platforms like the X Window System and Presentation Manager. The Window abstraction and its platform-specific implementations (XWindowImp, PMWindowImp) are in separate class hierarchies, allowing them to vary independently.
 - **Related Patterns**
   - Abstract Factory
   - Adapter
@@ -69,6 +75,8 @@
 - **Applicability:**
   - When the algorithm for creating a complex object should be independent of its parts and assembly.
   - When the construction process must allow different representations.
+- **Example**
+  Builder: An RTFReader that can convert RTF documents into various text formats (like plain ASCII or a text widget) uses a TextConverter interface. Concrete TextConverter subclasses (e.g., ASCIIConverter, TeXConverter, TextWidgetConverter) act as builders, responsible for creating and assembling the different text representations. The RTFReader (the director) uses the TextConverter to perform the conversion while parsing the RTF document.
 
 # Chain of Responsibility
 
@@ -83,6 +91,8 @@
   - When more than one object may handle a request, and the handler isn’t known a priori.
   - When you want to issue a request without specifying the receiver.
   - When the set of handlers should be dynamic.
+- **Example**
+  Chain of Responsibility: A context-sensitive help facility for a GUI where a help request from a button can be handled by the button itself, its parent dialog box, or the main window, depending on the specificity of the help information available. The request is passed along a chain of HelpHandler objects until one is able to handle it.
 - **Related Patterns**
   - Composite
 
@@ -101,6 +111,8 @@
   - When you want to parameterize objects by an action to perform.
   - When you need to specify, queue, and execute requests at different times.
   - When supporting undo functionality.
+- **Example**
+  Command: User interface toolkits use objects like buttons and menus to carry out requests in response to user input. The actual action to be performed is encapsulated in a Command object, allowing the toolkit objects to make requests of unspecified application objects without knowing the details of the operation or the receiver. For example, a PasteCommand encapsulates the action of pasting content.
 
 # Composite
 
@@ -115,6 +127,8 @@
 - **Applicability:**
   - When you want to represent part-whole hierarchies of objects.
   - When clients should ignore the difference between individual and composite objects.
+- **Example**
+  Composite: Graphics applications that allow users to build complex diagrams from simple components like Text and Lines. These primitives and containers (Picture) that group them share a common interface (Graphic) allowing clients to treat individual objects and compositions uniformly.
 
 # Decorator
 
@@ -130,6 +144,8 @@
   - To add responsibilities to individual objects dynamically and transparently.
   - For responsibilities that can be withdrawn.
   - When extension by subclassing is impractical.
+- **Example**
+  Decorator: Adding borders or scrolling functionality to user interface components dynamically. A BorderDecorator or ScrollDecorator wraps a VisualComponent (like a TextView) and adds the extra responsibility without altering the TextView's basic interface.
 
 # Facade
 
@@ -143,6 +159,8 @@
   - When you want to provide a simple interface to a complex subsystem.
   - When there are many dependencies between clients and implementation classes.
   - When you want to layer subsystems.
+- **Example**
+  Facade: A compiler subsystem with complex classes like Scanner, Parser, and CodeGenerator can provide a simplified Compiler class as a facade. This facade offers a single, higher-level interface to the compiler's functionality, making it easier for most clients to use without needing to interact directly with the more intricate subsystem components.
 
 # Factory Method
 
@@ -158,6 +176,8 @@
   - When a class can't anticipate the class of objects it must create.
   - When a class wants its subclasses to specify the objects it creates.
   - When delegating responsibility to helper subclasses.
+- **Example**
+  Factory Method: A framework for applications that can present multiple documents uses abstract Application and Document classes. Concrete application subclasses (like DrawingApplication) override an abstract CreateDocument factory method in the Application class to return the appropriate concrete Document subclass (like DrawingDocument) when a new document is needed.
 
 # Flyweight
 
@@ -175,6 +195,8 @@
   - When storage costs are high.
   - When most object state can be made extrinsic.
   - When object identity is not crucial.
+- **Example**
+  Flyweight: In a document editor, instead of creating a separate object for each character, a Character flyweight object can be shared across multiple contexts. The intrinsic state (like the font and character code) is stored in the Character object, while the extrinsic state (like position) is passed to it when needed.
 - **Related pattern**
   - Cmposite
   - State
@@ -198,6 +220,8 @@
   - When there is a language to interpret.
   - When statements can be represented as abstract syntax trees.
   - Best suited for simple grammars where efficiency is not critical.
+- **Example**
+  Interpreter: Using regular expressions to specify patterns of strings. Each rule in the regular expression grammar can be represented by a class (e.g., LiteralExpression, AlternationExpression), and an interpreter uses these representations to match patterns against strings.
 
 # Iterator (Cursor)
 
@@ -213,6 +237,8 @@
   - To access an aggregate object's contents without exposing its internal representation.
   - To support multiple traversals of aggregate objects.
   - To provide a uniform traversal interface for different aggregate structures.
+- **Example**
+  Iterator: A List aggregate object provides a way to access its elements sequentially without exposing its internal structure by using a separate ListIterator object. The ListIterator keeps track of the current position and allows traversal through the list's elements.
 - **Related Patterns**
   - Composite
   - Factory Method
@@ -230,6 +256,8 @@
   - When a set of objects communicate in complex ways.
   - When reusing an object is difficult due to its references to others.
   - When distributed behavior should be customizable without extensive subclassing.
+- **Example**
+  Mediator: In a dialog box with various widgets like buttons and entry fields, a DialogDirector object acts as a mediator to coordinate the interactions between these widgets. For example, the mediator can disable a button when a certain entry field is empty, thus centralising the control logic.
 
 # Memento
 
@@ -241,6 +269,8 @@
   - **Caretaker:** Responsible for safekeeping mementos.
 - **Consequences:** Preserves encapsulation boundaries and simplifies the Originator, but managing mementos can be expensive.
 - **Applicability:** When a snapshot of an object's state must be saved for later restoration without violating its encapsulation.
+- **Example**
+  Memento: An undo mechanism in an application can use a Memento object to store a snapshot of an object's internal state (SolverState). The originator (ConstraintSolver) creates the memento, and the caretaker (the undo mechanism) stores it and can later return it to the originator to restore its previous state, without violating encapsulation.
 
 # Observer (Publish-Subscribe / Dependents)
 
@@ -256,6 +286,8 @@
   - When an abstraction has two dependent aspects that should be encapsulated separately.
   - When a change in one object requires changes in an unknown number of others.
   - When an object should notify others without knowing who they are.
+- **Example**
+  Observer: A spreadsheet object and a bar chart object both display data from the same underlying application data object. When the data in the spreadsheet changes (the subject), the bar chart (an observer) is automatically notified and updates its presentation.
 - **Related pattern**
   - Singleton
   - Mediator
@@ -273,6 +305,8 @@
   - When a system should be independent of how its products are created, composed, and represented.
   - When classes are specified at runtime.
   - To avoid parallel factory hierarchies.
+- **Example**
+  Prototype: A graphical editor framework uses a GraphicTool that needs to create instances of application-specific Graphic subclasses (like Staff, WholeNote). Instead of creating new instances directly, the GraphicTool clones a prototypical instance of the required Graphic subclass.
 
 # Proxy
 
@@ -286,6 +320,8 @@
 - **Applicability:**
   - Whenever a more versatile or sophisticated reference to an object than a simple pointer is needed.
   - For remote objects, expensive objects requiring on-demand creation, or controlled access.
+- **Example**
+  Proxy: A document editor that can embed large raster images uses an ImageProxy as a placeholder for the actual Image object. The proxy handles the creation of the real Image only when it is needed (e.g., when it becomes visible), thus deferring the expensive creation process.
 
 # Singleton
 
@@ -298,6 +334,8 @@
   - When there must be exactly one instance of a class.
   - When it must be accessible to clients from a well-known access point.
   - When the sole instance should be extensible by subclassing.
+- **Example**
+  Singleton: A printer spooler in a system should have only one instance. The PrinterSpooler class ensures that only one instance of itself is created and provides a global point of access to that instance.
 - **Related Patterns**
   - Builder
   - Abstract Factory
@@ -316,6 +354,8 @@
 - **Applicability:**
   - When an object's behavior depends on its state and must change at runtime.
   - When operations involve large, multipart conditional statements based on state.
+- **Example**
+  State: A TCPConnection object can be in different states (e.g., Established, Listening, Closed), and its behaviour changes based on its current state. The TCPConnection object maintains a TCPState object representing its current state and delegates state-specific requests to this object.
 
 # Strategy (Policy)
 
@@ -331,6 +371,8 @@
   - When you need different variants of an algorithm.
   - To avoid exposing algorithm-specific data.
   - To replace many conditional statements.
+- **Example**
+  Strategy: Different algorithms for breaking a stream of text into lines can be encapsulated in separate Strategy classes (e.g., SimpleCompositor, TeXCompositor). A Composition object (the context) can then be configured with a specific Strategy to determine how it performs line breaking, allowing the algorithm to vary independently of the Composition.
 - **Related pattern**
   - Flyweight
 
@@ -346,6 +388,8 @@
   - To implement the invariant parts of an algorithm once and leave the variable parts to subclasses.
   - To factor out common behavior and avoid code duplication.
   - To control subclass extensions.
+- **Example**
+  Template Method: An application framework with Application and Document classes defines the overall process of opening a document in a template method. Subclasses like DrawingApplication and DrawingDocument then override specific steps (e.g., CanOpenDocument, DoCreateDocument, DoRead) to provide application-specific behaviour without changing the overall algorithm structure.
 
 # Visitor
 
@@ -362,3 +406,5 @@
   - When an object structure contains many classes with differing interfaces.
   - When you want to perform operations dependent on their concrete classes without modifying the classes.
   - When many distinct operations are needed.
+- **Example**
+  Visitor: A compiler represents programs as abstract syntax trees. Different operations like type-checking and code generation need to be performed on these trees. Instead of adding these operations to the node classes of the abstract syntax tree, a separate Visitor object (TypeCheckingVisitor, CodeGeneratingVisitor) can be created to encapsulate the operations for each node type. The nodes then accept the visitor, allowing it to perform the specific operation for that node.
